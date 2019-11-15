@@ -454,6 +454,97 @@
                           </a-form-item>
                         </a-col>
                       </a-row>
+                      <a-row>
+                        <a-col :md="5" :sm="24">
+                          <a-form-item label="标签分割量" :label-col="{ span: 11 }" :wrapper-col="{ span: 12 }">
+                            <a-input></a-input>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="5" :sm="24">
+                          <a-form-item label="包装类型" :label-col="{ span: 11 }" :wrapper-col="{ span: 9 }">
+                            <a-select defaultValue="lucy" style="width: 90px" @change="handleChange">
+                              <a-select-option value="jack">Jack</a-select-option>
+                              <a-select-option value="lucy">Lucy</a-select-option>
+                              <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                              <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                            </a-select>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="5" :sm="24">
+                          <a-form-item label="包装外观" :label-col="{ span: 11 }" :wrapper-col="{ span: 9 }">
+                            <a-select defaultValue="lucy" style="width: 90px" @change="handleChange">
+                              <a-select-option value="jack">Jack</a-select-option>
+                              <a-select-option value="lucy">Lucy</a-select-option>
+                              <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                              <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                            </a-select>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="7" :sm="24">
+                          <a-form-item label="机械手序列号" :label-col="{ span: 11 }" :wrapper-col="{ span: 12 }">
+                            <a-input></a-input>
+                          </a-form-item>
+                        </a-col>
+                      </a-row>
+                      <a-row>
+                        <a-col :md="4" :sm="24">
+                          <a-form-item label="是否自动码盘" :label-col="{ span: 20 }" :wrapper-col="{ span: 3 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                          <a-form-item label="是否收货" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                          <a-form-item label="是否补货" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                          <a-form-item label="是否发货" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                          <a-form-item label="是否盘点" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                          <a-form-item label="是否主包装" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                          <a-form-item label="是否移库" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                        <a-form-item label="是否裹膜" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                          <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="3" :sm="24">
+                          <a-form-item label="是否称量" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
+                          </a-form-item>
+                        </a-col>
+                      </a-row>
+                      <a-row>
+                        <a-col :md="8" :sm="24">
+                          <a-form-item label="更新时间" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                            <a-input></a-input>
+                          </a-form-item>
+                        </a-col>
+                        <a-col :md="8" :sm="24">
+                          <a-form-item label="创建时间" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                            <a-input></a-input>
+                          </a-form-item>
+                        </a-col>
+                      </a-row>
                     </a-form>
                   </template>
                 </a-layout-content>
