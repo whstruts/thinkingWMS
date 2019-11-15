@@ -1,7 +1,7 @@
 import { axios } from '@/utils/request'
 import api from './index'
 export function getPurchaseOrder(parameter, urlExtend) {
-  const urlAdd = api.FindPurchaseOrder + (urlExtend ? urlExtend : '')
+  const urlAdd = api.FindPurchaseOrder + (urlExtend || '')
   return axios({
     url: urlAdd,
     method: 'get',

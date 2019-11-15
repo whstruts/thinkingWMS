@@ -13,15 +13,15 @@
         @change="handleTabClick"
       >
         <a-tab-pane key="tab1" tab="账号密码登录">
-          <a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px;" message="账户或密码错误（admin/ant.design )" />
+          <!--<a-alert v-if="isLoginError" type="error" showIcon style="margin-bottom: 24px;" message="账户或密码错误（admin/ant.design )" />-->
           <a-form-item>
             <a-input
               size="large"
               type="text"
               placeholder="账户: admin"
               v-decorator="[
-                'username',
-                {rules: [{ required: true, message: '请输入帐户名或邮箱地址' }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
+                'no',
+                {rules: [{ required: true, message: '请输入帐户名' }, { validator: handleUsernameOrEmail }], validateTrigger: 'change'}
               ]"
             >
               <a-icon slot="prefix" type="user" :style="{ color: 'rgba(0,0,0,.25)' }"/>
@@ -43,32 +43,32 @@
             </a-input>
           </a-form-item>
         </a-tab-pane>
-        <a-tab-pane key="tab2" tab="手机号登录">
-          <a-form-item>
-            <a-input size="large" type="text" placeholder="手机号" v-decorator="['mobile', {rules: [{ required: true, pattern: /^1[34578]\d{9}$/, message: '请输入正确的手机号' }], validateTrigger: 'change'}]">
-              <a-icon slot="prefix" type="mobile" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-            </a-input>
-          </a-form-item>
+        <!--<a-tab-pane key="tab2" tab="手机号登录">-->
+          <!--<a-form-item>-->
+            <!--<a-input size="large" type="text" placeholder="手机号" v-decorator="['mobile', {rules: [{ required: true, pattern: /^1[34578]\d{9}$/, message: '请输入正确的手机号' }], validateTrigger: 'change'}]">-->
+              <!--<a-icon slot="prefix" type="mobile" :style="{ color: 'rgba(0,0,0,.25)' }"/>-->
+            <!--</a-input>-->
+          <!--</a-form-item>-->
 
-          <a-row :gutter="16">
-            <a-col class="gutter-row" :span="16">
-              <a-form-item>
-                <a-input size="large" type="text" placeholder="验证码" v-decorator="['captcha', {rules: [{ required: true, message: '请输入验证码' }], validateTrigger: 'blur'}]">
-                  <a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>
-                </a-input>
-              </a-form-item>
-            </a-col>
-            <a-col class="gutter-row" :span="8">
-              <a-button
-                class="getCaptcha"
-                tabindex="-1"
-                :disabled="state.smsSendBtn"
-                @click.stop.prevent="getCaptcha"
-                v-text="!state.smsSendBtn && '获取验证码' || (state.time+' s')"
-              ></a-button>
-            </a-col>
-          </a-row>
-        </a-tab-pane>
+          <!--<a-row :gutter="16">-->
+            <!--<a-col class="gutter-row" :span="16">-->
+              <!--<a-form-item>-->
+                <!--<a-input size="large" type="text" placeholder="验证码" v-decorator="['captcha', {rules: [{ required: true, message: '请输入验证码' }], validateTrigger: 'blur'}]">-->
+                  <!--<a-icon slot="prefix" type="mail" :style="{ color: 'rgba(0,0,0,.25)' }"/>-->
+                <!--</a-input>-->
+              <!--</a-form-item>-->
+            <!--</a-col>-->
+            <!--<a-col class="gutter-row" :span="8">-->
+              <!--<a-button-->
+                <!--class="getCaptcha"-->
+                <!--tabindex="-1"-->
+                <!--:disabled="state.smsSendBtn"-->
+                <!--@click.stop.prevent="getCaptcha"-->
+                <!--v-text="!state.smsSendBtn && '获取验证码' || (state.time+' s')"-->
+              <!--&gt;</a-button>-->
+            <!--</a-col>-->
+          <!--</a-row>-->
+        <!--</a-tab-pane>-->
       </a-tabs>
 
       <a-form-item>
@@ -121,6 +121,7 @@ import TwoStepCaptcha from '@/components/tools/TwoStepCaptcha'
 import { mapActions } from 'vuex'
 import { timeFix } from '@/utils/util'
 import { getSmsCaptcha, get2step } from '@/api/login'
+import { stringify } from 'qs'
 
 export default {
   components: {
@@ -142,7 +143,8 @@ export default {
         // login type: 0 email, 1 username, 2 telephone
         loginType: 0,
         smsSendBtn: false
-      }
+      },
+      no:''
     }
   },
   created () {
@@ -180,21 +182,31 @@ export default {
         customActiveKey,
         Login
       } = this
-
+      alert('1')
       state.loginBtn = true
 
-      const validateFieldsKey = customActiveKey === 'tab1' ? ['username', 'password'] : ['mobile', 'captcha']
-
+      const validateFieldsKey = customActiveKey === 'tab1' ? ['no', 'password'] : ['mobile', 'captcha']
+      alert('2')
       validateFields(validateFieldsKey, { force: true }, (err, values) => {
         if (!err) {
           console.log('login form', values)
+          alert('3')
           const loginParams = { ...values }
-          delete loginParams.username
-          loginParams[!state.loginType ? 'email' : 'username'] = values.username
-          loginParams.password = md5(values.password)
+          delete loginParams.no
+          loginParams[!state.loginType ? 'email' : 'no'] = values.no
+          loginParams.password = values.password //md5(values.password)
+          //this.no = loginParams.no
+          alert(loginParams.no)
+          //Object.assign(loginParams,this.no)
           Login(loginParams)
-            .then((res) => this.loginSuccess(res))
-            .catch(err => this.requestFailed(err))
+            .then((res) => {
+              this.loginSuccess(res)
+              alert(res)
+            })
+            .catch(err => {
+              this.requestFailed(err)
+              alert(err)
+            })
             .finally(() => {
               state.loginBtn = false
             })
@@ -249,8 +261,8 @@ export default {
       })
     },
     loginSuccess (res) {
-      this.$root.executor = {id: "499524467564535808",
-        name: "ADMIN"}
+      this.$root.executor = { id: '499524467564535808',
+        name: 'ADMIN' }
         //res.employee
       console.log(res)
       this.$router.push({ name: 'dashboard' }, () => {

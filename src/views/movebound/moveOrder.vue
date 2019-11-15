@@ -64,7 +64,7 @@
       <a-table
         :columns="columns"
         :dataSource="data"
-        :scroll="{ x: '400%', y: '50%' }"
+        :scroll="{ x: '300%', y: '50%' }"
       >
       </a-table>
       <a-button style="width: 100%; margin-top: 16px; margin-bottom: 8px" type="dashed" icon="plus" @click="newMember">新增明细</a-button>
@@ -103,7 +103,7 @@
             title: '巷道',
             dataIndex: 'ROADWAY',
             key: 'ROADWAY',
-            width: '4%',
+            width: '2%',
             scopedSlots: {
               customRender: 'ROADWAY'
             },

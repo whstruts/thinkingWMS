@@ -1,5 +1,6 @@
 const api = {
-  Login: '/auth/login',
+  //Login: '/auth/login',
+  Login:'http://120.27.225.232:8770/admin-dispatcher/auth/login',
   Logout: '/auth/logout',
   ForgePassword: '/auth/forge-password',
   Register: '/auth/register',

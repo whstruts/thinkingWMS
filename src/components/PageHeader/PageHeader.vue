@@ -6,7 +6,7 @@
         <div class="main" v-if="!$route.meta.hiddenHeaderContent">
           <div class="row">
             <img v-if="logo" :src="logo" class="logo"/>
-            <h1 v-if="title" class="title">{{ title }}</h1>
+            <!-- <h1 v-if="title" class="title">{{ title }}</h1> -->
             <div class="action">
               <slot name="action"></slot>
             </div>
@@ -65,11 +65,11 @@ export default {
 <style lang="less" scoped>
 .page-header {
   background: #fff;
-  padding: 16px 32px 0;
+  padding: 8px 16px 0;
   border-bottom: 1px solid #e8e8e8;
 
   .breadcrumb {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
   }
 
   .detail {
@@ -89,7 +89,7 @@ export default {
     }
 
     .main {
-      width: 100%;
+      width: 60%;
       flex: 0 1 auto;
 
       .row {
@@ -109,7 +109,7 @@ export default {
         line-height: 28px;
         font-weight: 500;
         color: rgba(0, 0, 0, 0.85);
-        margin-bottom: 16px;
+        margin-bottom: 0px;
         flex: auto;
       }
       .logo {
@@ -125,7 +125,7 @@ export default {
         line-height: 22px;
 
         .link {
-          margin-top: 16px;
+          margin-top: 8px;
           line-height: 24px;
 
           a {
@@ -136,7 +136,7 @@ export default {
       }
       .extra {
         flex: 0 1 auto;
-        margin-left: 88px;
+        margin-left: 44px;
         min-width: 242px;
         text-align: right;
       }

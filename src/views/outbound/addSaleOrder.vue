@@ -62,7 +62,7 @@
         :dataSource="data"
         :pagination="false"
         :loading="memberLoading"
-        :scroll="{ x: '130%',y:'50%' }">
+        :scroll="{ x: '160%',y:'80%' }">
         <template v-for="(col, i) in cols" :slot="col" slot-scope="text, record">
           <a-input
             :key="col"
@@ -245,7 +245,7 @@
             title: '商品编号',
             dataIndex: 'itemNo',
             key: 'itemNo',
-            width: '10%',
+            width: '4%',
             scopedSlots: {
               customRender: 'itemNo'
             },
@@ -255,100 +255,21 @@
             title: '商品名称',
             dataIndex: 'itemName',
             key: 'itemName',
-            width: '10%',
+            width: '5%',
             scopedSlots: {
               customRender: 'itemName'
             },
             show: true
           },
           {
-            title: '规格',
-            dataIndex: 'specification',
-            key: 'specification',
-            width: '10%',
+            title: '生产厂家',
+            dataIndex: 'manufacturer',
+            key: 'manufacturer',
+            width: '6%',
             scopedSlots: {
-              customRender: 'specification'
+              customRender: 'manufacturer'
             },
             show: true
-          },
-          {
-            title: '件数',
-            dataIndex: 'cases',
-            key: 'cases',
-            width: '5%',
-            scopedSlots: {
-              customRender: 'cases'
-            },
-            show: true
-          },
-          {
-            title: '零散数',
-            dataIndex: 'eachs',
-            key: 'eachs',
-            width: '5%',
-            scopedSlots: {
-              customRender: 'eachs'
-            },
-            show: true
-          },
-          {
-            title: '数量',
-            dataIndex: 'planQuantity',
-            key: 'planQuantity',
-            width: '5%',
-            scopedSlots: {
-              customRender: 'planQuantity'
-            },
-            show: true
-          },
-          {
-            title: '供应商批号',
-            dataIndex: 'lotNo',
-            key: 'lotNo',
-            width: '5%',
-            scopedSlots: {
-              customRender: 'lotNo'
-            },
-            show: true
-          },
-          {
-            title: '企业批号',
-            dataIndex: 'batchNo',
-            key: 'batchNo',
-            width: '5%',
-            scopedSlots: {
-              customRender: 'batchNo'
-            },
-            show: true
-          },
-          {
-            title: '生产日期',
-            dataIndex: 'productionDate',
-            key: 'productionDate',
-            width: '5%',
-            scopedSlots: {
-              customRender: 'productionDate'
-            },
-            show: true
-          },
-          {
-            title: '有效期至',
-            dataIndex: 'validUntil',
-            key: 'validUntil',
-            width: '5%',
-            scopedSlots: {
-              customRender: 'validUntil'
-            },
-            show: true
-          },
-          {
-            title: '操作',
-            key: 'action',
-            width: '10%',
-            scopedSlots: {
-              customRender: 'operation'
-            },
-            show: false
           },
           {
             // title: '商品ID',
@@ -362,6 +283,27 @@
             show: false
           },
           {
+            title: '版本',
+            dataIndex: 'modleName',
+            key: 'modleName',
+            width: '4%',
+            scopedSlots: {
+              customRender: 'modleName'
+            },
+            show: true
+          },
+          {
+            // title: '版本ID',
+            dataIndex: 'modelId',
+            key: 'modelId',
+            width: '0.000001%',
+            colSpan: '0',
+            scopedSlots: {
+              customRender: 'modelId'
+            },
+            show: false
+          },
+          {
             // title: '规格ID',
             dataIndex: 'packId',
             key: 'packId',
@@ -371,9 +313,119 @@
               customRender: 'packId'
             },
             show: false
+          },
+          {
+            title: '规格',
+            dataIndex: 'specification',
+            key: 'specification',
+            width: '4%',
+            scopedSlots: {
+              customRender: 'specification'
+            },
+            show: true
+          },
+          {
+            title: '包装单位',
+            dataIndex: 'uom',
+            key: 'uom',
+            width: '3%',
+            scopedSlots: {
+              customRender: 'uom'
+            },
+            show: true
+          },
+          {
+            title: '包装数',
+            dataIndex: 'factor',
+            key: 'factor',
+            width: '3%',
+            scopedSlots: {
+              customRender: 'factor'
+            },
+            show: true
+          },
+          {
+            title: '件数',
+            dataIndex: 'cases',
+            key: 'cases',
+            width: '2%',
+            scopedSlots: {
+              customRender: 'cases'
+            },
+            show: true
+          },
+          {
+            title: '零散数',
+            dataIndex: 'eachs',
+            key: 'eachs',
+            width: '2%',
+            scopedSlots: {
+              customRender: 'eachs'
+            },
+            show: true
+          },
+          {
+            title: '数量',
+            dataIndex: 'planQuantity',
+            key: 'planQuantity',
+            width: '2%',
+            scopedSlots: {
+              customRender: 'planQuantity'
+            },
+            show: true
+          },
+          {
+            title: '供应商批号',
+            dataIndex: 'lotNo',
+            key: 'lotNo',
+            width: '3%',
+            scopedSlots: {
+              customRender: 'lotNo'
+            },
+            show: true
+          },
+          {
+            title: '企业批号',
+            dataIndex: 'batchNo',
+            key: 'batchNo',
+            width: '3%',
+            scopedSlots: {
+              customRender: 'batchNo'
+            },
+            show: true
+          },
+          {
+            title: '仓库',
+            dataIndex: 'warehouseName',
+            key: 'warehouseName',
+            width: '3%',
+            scopedSlots: {
+              customRender: 'warehouseName'
+            },
+            show: true
+          },
+          {
+            title: '唯一码',
+            dataIndex: 'serialNumber',
+            key: 'serialNumber',
+            width: '3%',
+            scopedSlots: {
+              customRender: 'serialNumber'
+            },
+            show: true
           }
+          // ,
+          // {
+          //   title: '操作',
+          //   key: 'action',
+          //   width: '10%',
+          //   scopedSlots: {
+          //     customRender: 'operation'
+          //   },
+          //   show: false
+          // }
         ],
-        cols: ['rownum', 'itemNo', 'itemName', 'specification', 'cases', 'eachs', 'planQuantity', 'lotNo', 'batchNo', 'productionDate', 'validUntil', 'itemId', 'packId'],
+        cols: ['rownum', 'itemNo', 'itemName', 'manufacturer', 'itemId', 'modleName', 'modelId', 'packId', 'specification', 'uom', 'factor', 'cases', 'eachs', 'planQuantity', 'lotNo', 'batchNo', 'warehouseName', 'serialNumber'],
         data: [],
         iTypeCols: Array,
         errors: [],
@@ -382,12 +434,16 @@
         searchValue: '',
         searchKey: '',
         addModalVisible: '',
-        showItem1: parameter => {
-          console.log('host', this.HOST)
-          return this.$http.get('http://10.2.6.196:8080/hello/getStaff', {
-            params: Object.assign(parameter, this.queryParam)
-          })
-        },
+        // showItem1: parameter => {
+        //   console.log('host', this.HOST)
+        //   // return getItem(Object.assign(parameter, this.queryParam))
+        //   //   .then(res => {
+        //   //     return res.data
+        //   //   })
+        //   return this.$http.get('http://120.27.225.232:8770/resource-dispatcher/item/findAll', {
+        //     params: Object.assign(parameter, this.queryParam)
+        //   })
+        // },
         showItem: (parameter, body) => {
           console.log('loadData.parameter', parameter)
           body = {
@@ -463,8 +519,8 @@
         }
         var a = new Storerss()
         a.dd = '12345'
-        var xpf = new ItemDTO(a, '000')
-        xpf.packs = detailDatas
+        var xpf = new ItemDTO()
+        xpf.storer = a
         alert(xpf)
         this.order = {
           storer: this.$refs.storer.storer,
@@ -567,7 +623,7 @@
         if (key && column) {
           this.searchColumn = column
           this.searchKey = key
-          if (column === 'itemNo') {
+          if (column === 'itemNo' || column === 'itemName' || this.searchColumn === 'manufacturer') {
             this.$refs.item.open()
           }
         }
@@ -575,9 +631,11 @@
       changexs (selectcol) {
         const newData = [...this.data]
         const target = newData.filter(item => this.searchKey === item.key)[0]
-        if (this.searchColumn === 'itemNo') {
+        if (this.searchColumn === 'itemNo' || this.searchColumn === 'itemName' || this.searchColumn === 'manufacturer') {
           if (target) {
-            target[this.searchColumn] = selectcol.username
+            target['itemNo'] = selectcol.no
+            target['itemName'] = selectcol.name
+            target['manufacturer'] = selectcol.manufacturer
             target['itemId'] = selectcol.id
             this.data = newData
           }

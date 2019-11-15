@@ -46,22 +46,22 @@
         data1: [],
         columns: [
           {
-            title: '用户ID',
+            title: '商品ID',
             dataIndex: 'id',
             scopedSlots: { customRender: 'id' }
           },
           {
-            title: '用户名',
-            dataIndex: 'username',
-            scopedSlots: { customRender: 'username' }
+            title: '商品名称',
+            dataIndex: 'name',
+            scopedSlots: { customRender: 'name' }
           },
           {
-            title: '密码',
-            dataIndex: 'password'
+            title: '商品编号',
+            dataIndex: 'no'
           },
           {
-            title: '是否活动',
-            dataIndex: 'isActive'
+            title: '生产厂家',
+            dataIndex: 'manufacturer'
           }
         ]
       }
@@ -69,8 +69,8 @@
     methods: {
       open () {
         this.visible = true
-        this.axios.get('http://10.2.6.196:8080/hello/getAllStaff').then(data => {
-          this.data1 = data
+        this.axios.get('http://120.27.225.232:8770/resource-dispatcher/item/findAll').then(data => {
+          this.data1 = data.data
         })
       },
       handleCancel () {

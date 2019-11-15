@@ -51,15 +51,34 @@
         <template v-for="(col, i) in cols" :slot="col" slot-scope="text,record">
           <a-input
             :key="col"
-            v-if="record.editable &columns[i].show"
             style="margin: -5px 0"
+            v-if="record.editable &columns[i].show"
             :value="text"
-            :placeholder="columns[i].title == '商品编号'|| columns[i].title == '供应商批号'? '双击选择':columns[i].title "
+            :placeholder="columns[i].title == '商品编号'|| columns[i].title == '供应商批号'? '双击选择或手工录入':columns[i].title "
             @change="e => handleChange(e.target.value, record.key, col)"
             @dblclick="e => handleSearch(e.target.value, record.key, col)"
             @keyup.enter="e => handleSearch(e.target.value, record.key, col)"
           />
           <!--    <template v-else>{{ text }}</template>-->
+        </template>
+        <template slot="productionDate" slot-scope="text, record">
+          <a-date-picker
+            key="productionDate"
+            :v-model = "productionDt"
+            v-if="record.editable"
+            placeholder="填写日期"
+            :showToday="false"
+            @change="onChange"/>
+        </template>
+        <template slot="validUntil" slot-scope="text, record">
+          <a-date-picker
+            key="validUntil"
+            :v-model= "validUntilDate"
+            v-if="record.editable"
+            placeholder="填写日期"
+            :showToday="false"
+            @change="onChange"
+          />
         </template>
         <template slot="operation" slot-scope="text, record">
           <template v-if="record.editable">
@@ -282,7 +301,7 @@ export default {
           title: '生产日期',
           dataIndex: 'productionDate',
           key: 'productionDate',
-          width: '10%',
+          width: '11%',
           scopedSlots: {
             customRender: 'productionDate'
           },
@@ -292,11 +311,22 @@ export default {
           title: '有效期至',
           dataIndex: 'validUntil',
           key: 'validUntil',
-          width: '10%',
+          width: '11%',
           scopedSlots: {
             customRender: 'validUntil'
           },
           show: true
+        },
+        {
+            // title: '商品ID',
+           // colSpan: '0',
+          dataIndex: 'itemId',
+          key: 'itemId',
+          width: '0.0000000000000001%',
+          scopedSlots: {
+            customRender: 'itemId'
+          },
+           show: false
         },
         {
           title: '操作',
@@ -308,21 +338,10 @@ export default {
           show: false
         },
         {
-            // title: '商品ID',
-           // colSpan: '0',
-          dataIndex: 'itemId',
-          key: 'itemId',
-          width: '0.000000001%',
-          scopedSlots: {
-            customRender: 'itemId'
-          },
-           show: false
-        },
-        {
           // title: '规格ID',
           dataIndex: 'packId',
           key: 'packId',
-          width: '0.000001%',
+          width: '0.00000000000001%',
           colSpan: '0',
           scopedSlots: {
             customRender: 'packId'
@@ -333,7 +352,7 @@ export default {
           // title: '规格ID',
           dataIndex: 'id',
           key: 'id',
-          width: '0.000001%',
+          width: '0.000000000000001%',
           colSpan: '0',
           scopedSlots: {
             customRender: 'id'
@@ -361,10 +380,16 @@ export default {
       iTypeCols: Array,
       errors: [],
       searchColumn: '',
-      searchKey: ''
+      searchKey: '',
+      productionDt: '',
+      validUntilDate: ''
     }
   },
   methods: {
+    onChange (date, dateString){
+     // this.productionDt = dateString
+     //  this.columns.validUntil = dateString
+    },
     add () {
       this.visible = true
       axios({
@@ -378,12 +403,6 @@ export default {
       })
     },
     handleSubmit () {
-      // var storer = new StorerObj()
-      // storer.sid = '11'
-      // var it = new ItemTypeObj()
-      // it.dd = '66'
-      // var ss = new ItemObject(storer, '')
-      // console.log(ss)
       const {
         form: { validateFields }
       } = this
@@ -502,6 +521,11 @@ export default {
       }
     },
     handleSearch (value, key, column) {
+      // var storer = new StorerObj()
+      // storer.sid = this.$refs.storer.value
+      // var itemTypeId = new ItemTypeObj()
+      // itemTypeId.itemTypeId = this.$refs.itemType.value
+      // var ss = new ItemObject(storer, itemTypeId)
       // eslint-disable-next-line eqeqeq
       if (this.$refs.storer.value == '' || this.$refs.itemType.value == ''){
          this.$warning({ title: '警告',
@@ -545,6 +569,7 @@ export default {
           target[this.searchColumn] = selectcol.lot.no
           target['batchNo'] = selectcol.batch.no
           target['productionDate'] = selectcol.lot.productionDate
+          this.productionDt = selectcol.lot.productionDate
           target['validUntil'] = selectcol.lot.validUntil
           this.data = newData
         }
