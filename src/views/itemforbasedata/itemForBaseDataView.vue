@@ -728,38 +728,20 @@
               </a-col>
             </a-row>
             <a-row>
+              <a-col :md="2" :sm="24">
+              </a-col>
               <a-col :md="6" :sm="24">
-                <a-form-item label="存储环境" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
-                    <a-select-option value="jack">Jack</a-select-option>
-                    <a-select-option value="lucy">Lucy</a-select-option>
-                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
-                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
-                  </a-select>
+                <a-form-item label="近效期天数" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-input></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="6" :sm="24">
-                <a-form-item label="商品类别" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
-                    <a-select-option value="jack">Jack</a-select-option>
-                    <a-select-option value="lucy">Lucy</a-select-option>
-                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
-                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
-                  </a-select>
+                <a-form-item label="近产期天数" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-input></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="6" :sm="24">
-                <a-form-item label="周转方式" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
-                    <a-select-option value="jack">Jack</a-select-option>
-                    <a-select-option value="lucy">Lucy</a-select-option>
-                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
-                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
-                  </a-select>
-                </a-form-item>
-              </a-col>
-              <a-col :md="6" :sm="24">
-                <a-form-item label="存储条件" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                <a-form-item label="复检天数" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
                   <a-select defaultValue="lucy"  @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
@@ -770,39 +752,10 @@
               </a-col>
             </a-row>
             <a-row >
-              <a-col :md="3" :sm="24">
+              <a-col :md="1" :sm="24"></a-col>
+              <a-col :md="6" :sm="24">
                 <a-form-item>
-                  <a-checkbox @change="onChange">是否新品</a-checkbox>
-                </a-form-item>
-              </a-col>
-              <a-col :md="3" :sm="24">
-                <a-form-item>
-                  <a-checkbox @change="onChange">是否贵重药品</a-checkbox>
-                </a-form-item>
-              </a-col>
-              <a-col :md="3" :sm="24">
-                <a-form-item>
-                  <a-checkbox @change="onChange">是否监管</a-checkbox>
-                </a-form-item>
-              </a-col>
-              <a-col :md="3" :sm="24">
-                <a-form-item>
-                  <a-checkbox disabled @change="onChange">是否称量</a-checkbox>
-                </a-form-item>
-              </a-col>
-              <a-col :md="3" :sm="24">
-                <a-form-item>
-                  <a-checkbox @change="onChange">是否特管</a-checkbox>
-                </a-form-item>
-              </a-col>
-              <a-col :md="3" :sm="24">
-                <a-form-item>
-                  <a-checkbox @change="onChange">是否冷藏</a-checkbox>
-                </a-form-item>
-              </a-col>
-              <a-col :md="3" :sm="24">
-                <a-form-item>
-                  <a-checkbox @change="onChange">是否进口</a-checkbox>
+                  <a-checkbox @change="onChange">是否可用</a-checkbox>
                 </a-form-item>
               </a-col>
             </a-row>
