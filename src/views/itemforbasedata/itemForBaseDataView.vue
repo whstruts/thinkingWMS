@@ -616,7 +616,211 @@
           </a-layout>
         </a-layout>
       </a-tab-pane>
-      <a-tab-pane tab="版本信息" key="4">Tab 4</a-tab-pane>
+      <a-tab-pane tab="版本信息" key="4">
+        <a-table :dataSource="data" :columns="columns">
+          <div
+            slot="filterDropdown"
+            slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
+            style="padding: 8px"
+          >
+            <a-input
+              v-ant-ref="c => searchInput = c"
+              :placeholder="`Search ${column.dataIndex}`"
+              :value="selectedKeys[0]"
+              @change="e => setSelectedKeys(e.target.value ? [e.target.value] : [])"
+              @pressEnter="() => handleSearch(selectedKeys, confirm)"
+              style="width: 188px; margin-bottom: 8px; display: block;"
+            />
+            <a-button
+              type="primary"
+              @click="() => handleSearch(selectedKeys, confirm)"
+              icon="search"
+              size="small"
+              style="width: 90px; margin-right: 8px"
+            >Search</a-button
+            >
+            <a-button
+              @click="() => handleReset(clearFilters)"
+              size="small"
+              style="width: 90px"
+            >Reset</a-button
+            >
+          </div>
+          <a-icon
+            slot="filterIcon"
+            slot-scope="filtered"
+            type="search"
+            :style="{ color: filtered ? '#108ee9' : undefined }"
+          />
+          <template slot="customRender" slot-scope="text">
+            <span v-if="searchText">
+              <template
+                v-for="(fragment, i) in text.toString().split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))"
+              >
+                <mark
+                  v-if="fragment.toLowerCase() === searchText.toLowerCase()"
+                  :key="i"
+                  class="highlight"
+                >{{ fragment }}</mark
+                >
+                <template
+                  v-else
+                >{{ fragment }}</template
+                >
+              </template>
+            </span>
+            <template
+              v-else
+            >{{ text }}</template
+            >
+          </template>
+        </a-table>
+        <a-divider orientation="left">详情</a-divider>
+        <template>
+          <a-form>
+            <a-row>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="商品编号" :label-col="{ span: 5 }" :wrapper-col="{ span: 18 }">
+                  <a-select defaultValue="lucy"  @change="handleChange">
+                    <a-select-option value="jack">Jack</a-select-option>
+                    <a-select-option value="lucy">Lucy</a-select-option>
+                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="商品名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 18 }">
+                  <a-input></a-input>
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="货主名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 18 }">
+                  <a-input></a-input>
+                </a-form-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="版本名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 18 }">
+                  <a-input></a-input>
+                </a-form-item>
+              </a-col>
+              <a-col :md="5" :sm="24">
+                <a-form-item label="基础版本" :label-col="{ span: 8 }" :wrapper-col="{ span: 14 }">
+                  <a-input></a-input>
+                </a-form-item>
+              </a-col>
+              <a-col :md="5" :sm="24">
+                <a-form-item label="小版本" :label-col="{ span: 8 }" :wrapper-col="{ span: 14 }">
+                  <a-input></a-input>
+                </a-form-item>
+              </a-col>
+              <a-col :md="5" :sm="24">
+                <a-form-item label="标签" :label-col="{ span: 8 }" :wrapper-col="{ span: 14 }">
+                  <a-select defaultValue="lucy" style="width: 120px" @change="handleChange">
+                    <a-select-option value="jack">Jack</a-select-option>
+                    <a-select-option value="lucy">Lucy</a-select-option>
+                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :md="6" :sm="24">
+                <a-form-item label="存储环境" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-select defaultValue="lucy"  @change="handleChange">
+                    <a-select-option value="jack">Jack</a-select-option>
+                    <a-select-option value="lucy">Lucy</a-select-option>
+                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+              <a-col :md="6" :sm="24">
+                <a-form-item label="商品类别" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-select defaultValue="lucy"  @change="handleChange">
+                    <a-select-option value="jack">Jack</a-select-option>
+                    <a-select-option value="lucy">Lucy</a-select-option>
+                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+              <a-col :md="6" :sm="24">
+                <a-form-item label="周转方式" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-select defaultValue="lucy"  @change="handleChange">
+                    <a-select-option value="jack">Jack</a-select-option>
+                    <a-select-option value="lucy">Lucy</a-select-option>
+                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+              <a-col :md="6" :sm="24">
+                <a-form-item label="存储条件" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-select defaultValue="lucy"  @change="handleChange">
+                    <a-select-option value="jack">Jack</a-select-option>
+                    <a-select-option value="lucy">Lucy</a-select-option>
+                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
+                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
+                  </a-select>
+                </a-form-item>
+              </a-col>
+            </a-row>
+            <a-row >
+              <a-col :md="3" :sm="24">
+                <a-form-item>
+                  <a-checkbox @change="onChange">是否新品</a-checkbox>
+                </a-form-item>
+              </a-col>
+              <a-col :md="3" :sm="24">
+                <a-form-item>
+                  <a-checkbox @change="onChange">是否贵重药品</a-checkbox>
+                </a-form-item>
+              </a-col>
+              <a-col :md="3" :sm="24">
+                <a-form-item>
+                  <a-checkbox @change="onChange">是否监管</a-checkbox>
+                </a-form-item>
+              </a-col>
+              <a-col :md="3" :sm="24">
+                <a-form-item>
+                  <a-checkbox disabled @change="onChange">是否称量</a-checkbox>
+                </a-form-item>
+              </a-col>
+              <a-col :md="3" :sm="24">
+                <a-form-item>
+                  <a-checkbox @change="onChange">是否特管</a-checkbox>
+                </a-form-item>
+              </a-col>
+              <a-col :md="3" :sm="24">
+                <a-form-item>
+                  <a-checkbox @change="onChange">是否冷藏</a-checkbox>
+                </a-form-item>
+              </a-col>
+              <a-col :md="3" :sm="24">
+                <a-form-item>
+                  <a-checkbox @change="onChange">是否进口</a-checkbox>
+                </a-form-item>
+              </a-col>
+            </a-row>
+            <a-row>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="更新时间" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-input></a-input>
+                </a-form-item>
+              </a-col>
+              <a-col :md="8" :sm="24">
+                <a-form-item label="创建时间" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
+                  <a-input></a-input>
+                </a-form-item>
+              </a-col>
+            </a-row>
+          </a-form>
+        </template>
+      </a-tab-pane>
     </a-tabs>
     <a-layout-content style="padding: 0 50px">
     </a-layout-content>
