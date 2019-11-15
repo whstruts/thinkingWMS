@@ -186,26 +186,26 @@ export const asyncRouterMap = [
         ]
       },
 
-      // 商品资料维护
+      // 基础资料
       {
         path: '/itemforbasedata',
         name: 'itemforbasedata',
         // eslint-disable-next-line no-irregular-whitespace
-        redirect: '/itemforbasedata/itemForBaseData',
+        redirect: '/itemforbasedata/itemForBaseDataView',
         component: PageView, // 显示菜单路由
         meta: {
-          title: '商品资料',
+          title: '基础资料维护',
           keepAlive: true,
           icon: bxAnaalyse,
           permission: ['dashboard']
         },
         children: [{
-          path: '/itemforbasedata/itemForBaseData:pageNo([1-9]\\d*)?',
+          path: '/itemforbasedata/itemForBaseDataView:pageNo([1-9]\\d*)?',
           name: 'itemForBaseData',
           hideChildrenInMenu: true,
           component: () => import('@/views/itemforbasedata/itemForBaseDataView'),
           meta: {
-            title: '商品资料维护',
+            title: '基础资料',
             keepAlive: true,
             permission: ['dashboard']
           }
