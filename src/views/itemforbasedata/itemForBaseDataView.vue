@@ -8,7 +8,7 @@
     </div>
     <a-tabs defaultActiveKey="1">
       <a-tab-pane tab="商品列表" key="1">
-        <a-table :dataSource="data" :columns="columns">
+        <a-table :dataSource="data1" :columns="columns">
           <div
             slot="filterDropdown"
             slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -125,7 +125,7 @@
             <a-row>
               <a-col :md="16" :sm="24">
                 <a-form-item label="*货主名称" :label-col="{ span: 3 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -184,7 +184,7 @@
             <a-row>
               <a-col :md="6" :sm="24">
                 <a-form-item label="*商品类型" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -243,7 +243,7 @@
             <a-row>
               <a-col :md="6" :sm="24">
                 <a-form-item label="存储环境" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -253,7 +253,7 @@
               </a-col>
               <a-col :md="6" :sm="24">
                 <a-form-item label="商品类别" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -263,7 +263,7 @@
               </a-col>
               <a-col :md="6" :sm="24">
                 <a-form-item label="周转方式" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -273,7 +273,7 @@
               </a-col>
               <a-col :md="6" :sm="24">
                 <a-form-item label="存储条件" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -336,22 +336,22 @@
                 :style="{ color: filtered ? '#108ee9' : undefined }"
               />
               <template slot="customRender" slot-scope="text">
-            <span v-if="searchText">
-              <template
-                v-for="(fragment, i) in text.toString().split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))"
-              >
-                <mark
-                  v-if="fragment.toLowerCase() === searchText.toLowerCase()"
-                  :key="i"
-                  class="highlight"
-                >{{ fragment }}</mark
-                >
-                <template
-                  v-else
-                >{{ fragment }}</template
-                >
-              </template>
-            </span>
+                <span v-if="searchText">
+                  <template
+                    v-for="(fragment, i) in text.toString().split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))"
+                  >
+                    <mark
+                      v-if="fragment.toLowerCase() === searchText.toLowerCase()"
+                      :key="i"
+                      class="highlight"
+                    >{{ fragment }}</mark
+                    >
+                    <template
+                      v-else
+                    >{{ fragment }}</template
+                    >
+                  </template>
+                </span>
                 <template
                   v-else
                 >{{ text }}</template
@@ -381,7 +381,7 @@
                       <a-row>
                         <a-col :md="8" :sm="24">
                           <a-form-item label="货主名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                            <a-select defaultValue="lucy"  @change="handleChange">
+                            <a-select defaultValue="lucy" @change="handleChange">
                               <a-select-option value="jack">Jack</a-select-option>
                               <a-select-option value="lucy">Lucy</a-select-option>
                               <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -523,8 +523,8 @@
                           </a-form-item>
                         </a-col>
                         <a-col :md="3" :sm="24">
-                        <a-form-item label="是否裹膜" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
-                          <a-checkbox></a-checkbox>
+                          <a-form-item label="是否裹膜" :label-col="{ span: 19 }" :wrapper-col="{ span: 4 }">
+                            <a-checkbox></a-checkbox>
                           </a-form-item>
                         </a-col>
                         <a-col :md="3" :sm="24">
@@ -588,22 +588,22 @@
                       :style="{ color: filtered ? '#108ee9' : undefined }"
                     />
                     <template slot="customRender" slot-scope="text">
-            <span v-if="searchText">
-              <template
-                v-for="(fragment, i) in text.toString().split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))"
-              >
-                <mark
-                  v-if="fragment.toLowerCase() === searchText.toLowerCase()"
-                  :key="i"
-                  class="highlight"
-                >{{ fragment }}</mark
-                >
-                <template
-                  v-else
-                >{{ fragment }}</template
-                >
-              </template>
-            </span>
+                      <span v-if="searchText">
+                        <template
+                          v-for="(fragment, i) in text.toString().split(new RegExp(`(?<=${searchText})|(?=${searchText})`, 'i'))"
+                        >
+                          <mark
+                            v-if="fragment.toLowerCase() === searchText.toLowerCase()"
+                            :key="i"
+                            class="highlight"
+                          >{{ fragment }}</mark
+                          >
+                          <template
+                            v-else
+                          >{{ fragment }}</template
+                          >
+                        </template>
+                      </span>
                       <template
                         v-else
                       >{{ text }}</template
@@ -681,7 +681,7 @@
             <a-row>
               <a-col :md="8" :sm="24">
                 <a-form-item label="商品编号" :label-col="{ span: 5 }" :wrapper-col="{ span: 18 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -742,7 +742,7 @@
               </a-col>
               <a-col :md="6" :sm="24">
                 <a-form-item label="复检天数" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy"  @change="handleChange">
+                  <a-select defaultValue="lucy" @change="handleChange">
                     <a-select-option value="jack">Jack</a-select-option>
                     <a-select-option value="lucy">Lucy</a-select-option>
                     <a-select-option value="disabled" disabled>Disabled</a-select-option>
@@ -807,10 +807,12 @@
       address: 'London No. 2 Lake Park'
     }
   ]
+  const data1 = []
   export default {
     name: 'ItemForBaseDataView',
     data () {
       return {
+        data1,
         data,
         searchText: '',
         searchInput: null,
@@ -872,7 +874,97 @@
         ]
       }
     },
+    mounted:function (){
+      this.locate()
+      this.data1 = [
+        {
+          key: '1',
+          name: 'John Brown',
+          age: 32,
+          address: 'New York No. 1 Lake Park'
+        },
+        {
+          key: '2',
+          name: 'Joe Black',
+          age: 42,
+          address: 'London No. 1 Lake Park'
+        },
+        {
+          key: '3',
+          name: 'Jim Green',
+          age: 32,
+          address: 'Sidney No. 1 Lake Park'
+        },
+        {
+          key: '4',
+          name: 'Jim Red',
+          age: 32,
+          address: 'London No. 2 Lake Park'
+        }
+      ]
+    },
     methods: {
+      locate () {
+        var Client = require('node-rest-client').Client
+        var client = new Client()
+        const body = {}
+        const args = {}
+        const executor = {}
+        const warehouse = {}
+        executor.available = false
+        executor.mnemonicCode = null
+        executor.name = 'ADMIN'
+        executor.no = 'ADMIN'
+        executor.company = null
+        executor.department = null
+        executor.fingerPrints = null
+        executor.posts = null
+        executor.roles = null
+        executor.menus = null
+        executor.warehouseAuthorities = null
+        executor.storerAuthorities = null
+        executor.itemTypeAuthorities = null
+        executor.orderTypeAuthorities = null
+        executor.numberOfContainers = 0
+        executor.numberOfPackages = 0
+        executor.password = null
+        executor.username = null
+        executor.numberOfCase = null
+        executor.numberOfEach = null
+        executor.numberOfOrder = null
+        executor.userpwd = null
+        executor.signatureType = null
+        executor.categories = null
+        executor.methods = null
+        executor.admin = null
+        executor.lastModifiedTime = null
+        executor.id = '499524467564535808'
+        executor.version = 0
+        args.name = ''
+        args.no = ''
+        args.id = ''
+        args.employee_id = ''
+        warehouse.id = 560456239167959042
+        body.no = 'getItemTypeForCombox'
+        body.warehouse = warehouse
+        body.query = false
+        body.args = args
+        body.executor = executor
+        var argsx = {
+                      // data: { 'no':'getItemTypeForCombox', 'warehouse':'{"id":560456239167959042}', 'query':false, 'args':'{"id":"","no":"","name":"","employee_id":""}', 'executor':{ 'available':false, 'mnemonicCode':null, 'name':'ADMIN', 'no':'ADMIN', 'company':null, 'department':null, 'fingerPrints':null, 'posts':null, 'roles':null, 'menus':null, 'warehouseAuthorities':null, 'storerAuthorities':null, 'itemTypeAuthorities':null, 'orderTypeAuthorities':null, 'numberOfContainers':0, 'numberOfPackages':0, 'password':null, 'username':null, 'numberOfCase':null, 'numberOfEach':null, 'numberOfOrder':null, 'userpwd':null, 'signatureType':null, 'categories':null, 'methods':null, 'admin':true, 'lastModifiedTime':null, 'id':'499524467564535808', 'version':0 } },
+                       data:JSON.stringify(body),
+                       headers: { 'Content-Type': 'application/json' }
+                   }
+    // registering remote methods
+         client.registerMethod('postMethod', 'http://120.27.225.232:8770/admin-dispatcher/query', 'POST')
+
+         client.methods.postMethod(argsx, function (data, response) {
+      // parsed response body as js object
+         console.log(data)
+      // raw response
+         console.log(response)
+    })
+  },
       handleSearch (selectedKeys, confirm) {
         confirm()
         this.searchText = selectedKeys[0]
