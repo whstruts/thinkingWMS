@@ -6,7 +6,7 @@
       <a-button>刷新</a-button>
       <a-button>保存</a-button>
     </div>
-    <a-tabs defaultActiveKey="1">
+    <a-tabs @click="clickTab" tabBarGutter="10" v-model="activeKey">
       <a-tab-pane tab="商品列表" key="1">
         <a-table :dataSource="dataGoods" :columns="columnsGoods" :scroll="{ x: '400%', y: '50%' }">
           <div
@@ -813,9 +813,10 @@
   const dataGoods = []
   export default {
     name: 'ItemForBaseDataView',
-    components: { itemBase,ItemType },
+    components: { itemBase, ItemType },
     data () {
       return {
+        activeKey:'1',
         data,
         dataGoods,
         searchText: '',
@@ -1051,7 +1052,7 @@
       }
     },
     mounted (){
-       // myModule.executor.url = 'http://120.27.225.232:8770/admin-dispatcher/query'
+       myModule.executor.url = 'http://120.27.225.232:8770/admin-dispatcher/query'
        queryAPI().then(
          data => {
                console.log('res=>', data)
@@ -1059,6 +1060,9 @@
            })
       },
     methods: {
+      clickTab (){
+        this.activeKey = parseInt(this.activeKey) < 4 ? ((parseInt(this.activeKey) + 1) % 5).toString() : '1'
+      },
       handleSearch (selectedKeys, confirm) {
         confirm()
         this.searchText = selectedKeys[0]
