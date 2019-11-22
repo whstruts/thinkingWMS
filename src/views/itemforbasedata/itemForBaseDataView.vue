@@ -6,9 +6,9 @@
       <a-button>刷新</a-button>
       <a-button>保存</a-button>
     </div>
-    <a-tabs @click="clickTab" tabBarGutter="10" v-model="activeKey">
+    <a-tabs tabBarGutter="10" v-model="activeKey">
       <a-tab-pane tab="商品列表" key="1">
-        <a-table :dataSource="dataGoods" :columns="columnsGoods" :scroll="{ x: '400%', y: '50%' }">
+        <a-table :dataSource="dataGoods" :columns="columnsGoods" :scroll="{ x: '400%', y: '50%' }" :customRow="handleSearchGoods">
           <div
             slot="filterDropdown"
             slot-scope="{ setSelectedKeys, selectedKeys, confirm, clearFilters, column }"
@@ -1060,12 +1060,22 @@
            })
       },
     methods: {
-      clickTab (){
-        this.activeKey = parseInt(this.activeKey) < 4 ? ((parseInt(this.activeKey) + 1) % 5).toString() : '1'
-      },
+      // clickTab (){
+      //   this.activeKey = parseInt(this.activeKey) < 4 ? ((parseInt(this.activeKey) + 1) % 5).toString() : '1'
+      // },
       handleSearch (selectedKeys, confirm) {
         confirm()
         this.searchText = selectedKeys[0]
+      },
+      handleSearchGoods (record, index) {
+        return {
+          on: {
+              click: () => {
+              console.log(record, index)
+              this.activeKey = '2'
+            }
+          }
+        }
       },
 
       handleReset (clearFilters) {
