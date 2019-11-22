@@ -74,7 +74,8 @@
             <a-row >
               <a-col :md="8" :sm="24">
                 <a-form-item label="*商品编号" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <item-base></item-base>
+<!--                  <item-base></item-base>-->
+                  <a-input v-model="ItemGoods.no"></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
@@ -816,6 +817,7 @@
     components: { itemBase, ItemType },
     data () {
       return {
+        ItemGoods:{},
         activeKey:'1',
         data,
         dataGoods,
@@ -1073,6 +1075,7 @@
               click: () => {
               console.log(record, index)
               this.activeKey = '2'
+              this.ItemGoods.no = record.CHINESE_NAME
             }
           }
         }
