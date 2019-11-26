@@ -80,36 +80,37 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="商品内码" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <item-type></item-type>
+<!--                  <item-type></item-type>-->
+                  <a-input v-model="ItemGoods.id"></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="*中文名称" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.name"></a-input>
                 </a-form-item>
               </a-col>
             </a-row>
             <a-row>
               <a-col :md="8" :sm="24">
                 <a-form-item label="英文名" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.englishName"></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="助记码" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.code"></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="*产地" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.producingArea"></a-input>
                 </a-form-item>
               </a-col>
             </a-row>
             <a-row>
               <a-col :md="8" :sm="24">
                 <a-form-item label="批准文号" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.approval"></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
@@ -119,24 +120,19 @@
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item label="*生产厂家" :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.manufacturer"></a-input>
                 </a-form-item>
               </a-col>
             </a-row>
             <a-row>
               <a-col :md="16" :sm="24">
                 <a-form-item label="*货主名称" :label-col="{ span: 3 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy" @change="handleChange">
-                    <a-select-option value="jack">Jack</a-select-option>
-                    <a-select-option value="lucy">Lucy</a-select-option>
-                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
-                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
-                  </a-select>
+                  <storer defaultValue="ItemGoods.storer"></storer>
                 </a-form-item>
               </a-col>
               <a-col :md="8" :sm="24">
                 <a-form-item :label-col="{ span: 5 }" :wrapper-col="{ span: 12 }">
-                  <a-checkbox @change="onChange">是否可用</a-checkbox>
+                  <a-checkbox v-model="ItemGoods.available" default-checked="true" @change="onChange">是否可用</a-checkbox>
                 </a-form-item>
               </a-col>
             </a-row>
@@ -146,71 +142,73 @@
         <template>
           <a-form>
             <a-row >
-              <a-col :md="3" :sm="24">
+              <a-col :md="1" :sm="24">
+              </a-col>
+              <a-col :md="2" :sm="24">
                 <a-form-item>
-                  <a-checkbox @change="onChange">是否新品</a-checkbox>
+                  <a-checkbox v-model="ItemGoods.newProduct" @change="onChange">是否新品</a-checkbox>
                 </a-form-item>
+              </a-col>
+              <a-col :md="1" :sm="24">
               </a-col>
               <a-col :md="3" :sm="24">
                 <a-form-item>
-                  <a-checkbox @change="onChange">是否贵重药品</a-checkbox>
+                  <a-checkbox v-model="ItemGoods.valuable" @change="onChange">是否贵重药品</a-checkbox>
                 </a-form-item>
               </a-col>
-              <a-col :md="3" :sm="24">
+              <a-col :md="2" :sm="24">
                 <a-form-item>
-                  <a-checkbox @change="onChange">是否监管</a-checkbox>
+                  <a-checkbox v-model="ItemGoods.supervised" @change="onChange">是否监管</a-checkbox>
                 </a-form-item>
               </a-col>
-              <a-col :md="3" :sm="24">
+              <a-col :md="1" :sm="24">
+              </a-col>
+              <a-col :md="2" :sm="24">
                 <a-form-item>
                   <a-checkbox disabled @change="onChange">是否称量</a-checkbox>
                 </a-form-item>
               </a-col>
-              <a-col :md="3" :sm="24">
+              <a-col :md="1" :sm="24">
+              </a-col>
+              <a-col :md="2" :sm="24">
                 <a-form-item>
-                  <a-checkbox @change="onChange">是否特管</a-checkbox>
+                  <a-checkbox v-model="ItemGoods.controlled" @change="onChange">是否特管</a-checkbox>
                 </a-form-item>
               </a-col>
-              <a-col :md="3" :sm="24">
+              <a-col :md="1" :sm="24">
+              </a-col>
+              <a-col :md="2" :sm="24">
                 <a-form-item>
-                  <a-checkbox @change="onChange">是否冷藏</a-checkbox>
+                  <a-checkbox v-model="ItemGoods.coldChains" @change="onChange">是否冷藏</a-checkbox>
                 </a-form-item>
               </a-col>
-              <a-col :md="3" :sm="24">
+              <a-col :md="1" :sm="24">
+              </a-col>
+              <a-col :md="2" :sm="24">
                 <a-form-item>
-                  <a-checkbox @change="onChange">是否进口</a-checkbox>
+                  <a-checkbox v-model="ItemGoods.importable" @change="onChange">是否进口</a-checkbox>
                 </a-form-item>
               </a-col>
             </a-row>
             <a-row>
               <a-col :md="6" :sm="24">
                 <a-form-item label="*商品类型" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy" @change="handleChange">
-                    <a-select-option value="jack">Jack</a-select-option>
-                    <a-select-option value="lucy">Lucy</a-select-option>
-                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
-                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
-                  </a-select>
+                  <item-type></item-type>
                 </a-form-item>
               </a-col>
               <a-col :md="6" :sm="24">
                 <a-form-item label="出库批号数" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.numberOfLot"></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="6" :sm="24">
                 <a-form-item label="复检天数" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-input></a-input>
+                  <a-input v-model="ItemGoods.daysOfInspectionNearly"></a-input>
                 </a-form-item>
               </a-col>
               <a-col :md="6" :sm="24">
                 <a-form-item label="ABC分类" :label-col="{ span: 6 }" :wrapper-col="{ span: 12 }">
-                  <a-select defaultValue="lucy" style="width: 120px" @change="handleChange">
-                    <a-select-option value="jack">Jack</a-select-option>
-                    <a-select-option value="lucy">Lucy</a-select-option>
-                    <a-select-option value="disabled" disabled>Disabled</a-select-option>
-                    <a-select-option value="Yiminghe">yiminghe</a-select-option>
-                  </a-select>
+                   <dictionary param="SALE_CLASSIFICATION"></dictionary>
                 </a-form-item>
               </a-col>
             </a-row>
@@ -785,6 +783,8 @@
   import myModule, { queryAPI } from './itemforbasedata'
   import itemBase from './itemBase'
   import ItemType from '../../components/Selector/ItemType/ItemType'
+  import Storer from '../../components/Selector/Storer/Storer'
+  import Dictionary from '../../components/Selector/Dictionary/Dictionary'
   const data = [
     {
       key: '1',
@@ -814,7 +814,7 @@
   const dataGoods = []
   export default {
     name: 'ItemForBaseDataView',
-    components: { itemBase, ItemType },
+    components: { Dictionary, Storer, itemBase, ItemType },
     data () {
       return {
         ItemGoods:{},
@@ -1075,7 +1075,15 @@
               click: () => {
               console.log(record, index)
               this.activeKey = '2'
-              this.ItemGoods.no = record.CHINESE_NAME
+              this.ItemGoods.no = record.SHANGP_NO
+              this.ItemGoods.id = record.SHANGP_ID
+              this.ItemGoods.name = record.CHINESE_NAME
+              this.ItemGoods.code = record.ZHUJ_CODE
+              this.ItemGoods.producingArea = record.CHANDI
+              this.ItemGoods.englishName = record.ENGLISH_NAME
+              this.ItemGoods.approval = record.APPROVAL
+              this.ItemGoods.manufacturer = record.MAKER
+              this.ItemGoods.storer = record.YEZ_NAME
             }
           }
         }
